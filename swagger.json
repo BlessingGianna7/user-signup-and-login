@@ -1,0 +1,606 @@
+{ "swagger": "2.0",
+    "info": {
+        "description": "School Management Backend",
+        "title": "school Management"
+    },
+    "tags": [
+        {
+            "name": "USER"
+        },
+        {
+            "name": "TEACHERS"
+        },
+        {
+            "name": "STUDENT "
+        }
+    ],
+    "paths": {
+        "/users/register": {
+            "post": {
+                "tags": [
+                    "USER"
+                ],
+                "summary": "Registering a user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "type" : "object",
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "required": true
+                            },
+                            "email": {
+                                "type": "string",
+                                "required": true
+                            },
+                            "password": {
+                                "type": "string",
+                                "required": true
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Invalid data"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },"/users/login": {
+            "post": {
+                "tags": [
+                    "USER"
+                ],
+                "summary": "Login a user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "type" : "object",
+                        "properties": {
+                            "email": {
+                                "type": "string",
+                                "required": true
+                            },
+                            "password": {
+                                "type": "string",
+                                "required": true
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Invalid data"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/users/profile": {
+            "get": {
+                "tags": [
+                    "USER"
+                ],
+                "summary": "Get profile of a logged in user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Auth",
+                        "required": true,
+                        "description": "Token"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Invalid data"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/teachers": {
+            "get": {
+                "tags": [
+                    "TEACHERS"
+                ],
+                "summary": "Get all teachers",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Invalid data"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/teachers/new": {
+            "post": {
+                "tags": [
+                    "TEACHERS"
+                ],
+                "summary": "Create a new teacher",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Auth",
+                        "required": true,
+                        "description": "Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "type" : "object",
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "required": true
+                            },
+                            "course": {
+                                "type": "string",
+                                "required":"true"
+                            }
+                            
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Invalid data"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/teachers/{id}/update": {
+            "put": {
+                "tags": [
+                    "TEACHERS"
+                ],
+                "summary": "Update a teacher",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Auth",
+                        "required": true,
+                        "description": "Token"
+                    },
+                    {
+                        "in":"path",
+                        "name":"id",
+                        "description":"id of the teacher",
+                        "type":"string",
+                        "required":"true"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "type" : "object",
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "required": true
+                            },
+                            "course": {
+                                "type": "string",
+                                "required":"true"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Invalid data"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/teachers/{id}/delete": {
+            "delete": {
+                "tags": [
+                    "TEACHERS"
+                ],
+                "summary": "delete a teacher",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Auth",
+                        "required": true,
+                        "description": "Token"
+                    },
+                    {
+                        "in":"path",
+                        "name":"id",
+                        "description":"id of the teacher",
+                        "type":"string",
+                        "required":"true"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Invalid data"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/teachers/{id}": {
+            "put": {
+                "tags": [
+                    "TEACHERS"
+                ],
+                "summary": "Get a single teacher",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Auth",
+                        "required": true,
+                        "description": "Token"
+                    },
+                    {
+                        "in":"path",
+                        "name":"id",
+                        "description":"id of the teacher",
+                        "type":"string",
+                        "required":"true"
+                    }
+                 
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Invalid data"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        
+        "/students/new": {
+            "post": {
+                "tags": [
+                    "STUDENT"
+                ],
+                "summary": "Create a new student",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Auth",
+                        "required": true,
+                        "description": "Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "type" : "object",
+                        "properties": {
+                            "names": {
+                                "type": "string",
+                                "required": true
+                            },
+                            "email": {
+                                "type": "string",
+                                "required": true
+
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Invalid data"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/students/{id}/update": {
+            "put": {
+                "tags": [
+                    "STUDENT"
+                ],
+                "summary": "Update a student",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Auth",
+                        "required": true,
+                        "description": "Token"
+                    },
+                    {
+                        "in":"path",
+                        "name":"id",
+                        "description":"id of the student",
+                        "type":"string",
+                        "required":"true"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "type" : "object",
+                        "properties": {
+                            "names": {
+                                "type": "string",
+                                "required": true
+                            },
+                            "email": {
+                                "type": "string",
+                                "required": true
+
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Invalid data"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/students/{id}/delete": {
+            "delete":{
+                "tags": [
+                    "STUDENT"
+                ],
+                "summary": "delete a student",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Auth",
+                        "required": true,
+                        "description": "Token"
+                    },
+                    {
+                        "in":"path",
+                        "name":"id",
+                        "description":"id of the student",
+                        "type":"string",
+                        "required":"true"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Invalid data"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/students/{id}": {
+            "put": {
+                "tags": [
+                    "STUDENT"
+                ],
+                "summary": "Get a single student",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Auth",
+                        "required": true,
+                        "description": "Token"
+                    },
+                    {
+                        "in":"path",
+                        "name":"id",
+                        "description":"id of the student",
+                        "type":"string",
+                        "required":"true"
+                    }
+                 
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Invalid data"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/students": {
+            "get": {
+                "tags": [
+                    "STUDENT"
+                ],
+                "summary": "Get all students",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Invalid data"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        }
+    }
+}
+        
+
+
+        
+
+
